@@ -97,6 +97,11 @@ function hostCard(h){
   top.appendChild(el('span','st', LABEL[st]||st));
   c.appendChild(top);
 
+  if(h.kind === 'lan'){
+    c.appendChild(el('div','metrics m', h.detail || '连通'));
+    return c;
+  }
+
   const m = el('div','metrics');
   const load = el('div','m','负载 <b>'+(h.load==null?'—':h.load)+'</b>'); m.appendChild(load);
   const up = el('div','m','运行 <b>'+(h.uptime||'—')+'</b>'); m.appendChild(up);
@@ -163,6 +168,9 @@ async function tick(){
     document.getElementById('live').style.background='var(--ok)';
   }catch(e){
     document.getElementById('live').style.background='var(--bad)';
+    document.getElementById('age').textContent='拉取失败（'+e.message+'），5 秒后重试';
+    setTimeout(tick, 5000);
+    return;
   }
   left = REFRESH;
 }

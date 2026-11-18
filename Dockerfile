@@ -10,6 +10,8 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY server.py /usr/local/bin/server.py
+COPY dashboard.html /usr/local/share/panel/dashboard.html
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 80

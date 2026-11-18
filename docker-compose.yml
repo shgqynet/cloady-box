@@ -1,0 +1,14 @@
+services:
+  box:
+    build: .
+    ports:
+      - "80"
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - data:/data
+
+volumes:
+  data:
+    driver_opts:
+      size: 4Gi

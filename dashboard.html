@@ -97,7 +97,7 @@ function hostCard(h){
   top.appendChild(el('span','st', LABEL[st]||st));
   c.appendChild(top);
 
-  if(h.kind === 'lan'){
+  if(h.kind === 'lan' || h.kind === 'sandbox'){
     c.appendChild(el('div','metrics m', h.detail || '连通'));
     return c;
   }
